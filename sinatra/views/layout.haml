@@ -1,0 +1,87 @@
+!!!
+%html
+  %head
+    %meta{charset: "utf-8"}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %link{href: "/images/favicon32.png", rel: "icon", type: "image/png"}
+    %link{href: "/css/bootstrap.min.css", rel: "stylesheet", type: "text/css"}
+    %link{href: "/css/bootstrap-theme.min.css", rel: "stylesheet"}
+    %link{href: "/css/font-awesome.min.css", rel: "stylesheet"}
+    = yield_content :stylesheet
+    %title
+      BX Survey Admin Portal -
+      = yield_content :title
+  %body{style: "padding-top: 70px;"}
+    / Fixed navbar
+    - if ("#{session[:usertype]}" != '')  
+      .navbar.navbar-default.navbar-fixed-top{role: "navigation"}
+        .container
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{href: "/"}
+              %img{src: "/images/cloud_logo.png", width:"20px"}
+              Survey Admin Portal
+              %img{src: "/images/iicimage.jpg", width:"25px"}
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav
+              %li
+                %a{href: "/"} Home
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                  Events
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{href: "/create_event"} Create Event
+                  %li
+                    %a{href: "/update_event"} Edit Event
+                  %li
+                    %a{href: "/delete_event"} Delete Event
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                  Cities
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{href: "/create_city"} Create City
+                  %li
+                    %a{href: "/update_city"} Edit City Status
+                  %li
+                    %a{href: "/delete_city"} Delete City 
+            %ul.nav.navbar-nav.navbar-right
+              - if ("#{session[:usertype]}" == 'ADM' || "#{session[:usertype]}" == 'OPR' )
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                    Manage Users
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "/create_user"} Create User
+                    %li
+                      %a{href: "/edit_user"} Edit User
+                    %li
+                      %a{href: "/delete_user"} Delete User
+                %li
+                  %a{href: "/generate_report"} Generate Report
+              - if ("#{session[:usertype]}" == 'ADM')        
+                %li
+                  %a{href: "/create_table"} Create Tables
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                  ="#{session[:username]}"
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{href: "/change_password"} Change Password
+                  %li
+                    %a{href: "/logout"} Logout
+                
+              
+    = yield
+    %script{src: "/javascript/jquery-1.11.1.min.js"}
+    %script{src: "/javascript/bootstrap.min.js", type: "text/javascript"}
