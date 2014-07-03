@@ -1,18 +1,20 @@
 - content_for :title do
   Select Event 
 .container
+  -# Big TITLE heading 
   %h1.text-center Select Event to generate Feedback report 
+  -# Big TITLE heading [END]
   %form{role: "form", method: "POST", action: "/generate_fb_report"}
     .form-group
       .input-group
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar
-        %select.form-control{name: "event_id", required: "yes"}
-          %option{value: "", selected: "", default: "", disabled:""} Select an event to generate report
+        %select.form-control.multiselect{multiple:"multiple", name: "event_id", required: "yes"}
+          %option{value: "", selected: "", default: "", disabled:""} Scroll down to see more.  Select Multiple if needed.
           - @db_event_hash.sort.each do |key,value|
             - event_id_desc = key + "  (" + value + ")"
             %option{value: "#{key}"} #{event_id_desc}
     .text-center
       %button.btn.btn-lg.btn-primary{type: "submit"}
-        Generate report 
+        Generate Report 
         %span.glyphicon.glyphicon-chevron-right

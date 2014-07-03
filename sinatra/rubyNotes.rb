@@ -1169,6 +1169,7 @@ get '/generate_report' do
   haml :select_event_feed_back
 end    
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+#=-=-=-=-=-=-=-GENERATE FEEDBACK REPORT-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
 post '/generate_fb_report' do
   session!
   messages=""
@@ -1207,6 +1208,7 @@ post '/generate_fb_report' do
   attachment "#{this_event_id}.csv"
   response.write(messages) 
 end
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  
 
 get '/change_password' do
