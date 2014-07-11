@@ -9,7 +9,7 @@
       .input-group
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar
-        %select.form-control.multiselect{multiple:"multiple", name: "event_id", required: "yes"}
+        %select.form-control.multiselect{multiple:"multiple", name: "event_id[]", required: "yes"}
           %option{value: "", selected: "", default: "", disabled:""} Scroll down to see more.  Select Multiple if needed.
           - @db_event_hash.sort.each do |key,value|
             - event_id_desc = key + "  (" + value + ")"
